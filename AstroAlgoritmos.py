@@ -52,3 +52,15 @@ def jul2gre(J):
     Ind=Mes>2
     Anio[Ind]=C[Ind]-4716
     return Anio,Mes,Dia
+def lst(JD,longitud):
+    """
+    Dado JD en días julianos y longitud en grados retorna la hora sideral local
+    @author: Fernando Darío Mazzone
+    """   
+    if not longitud==0:
+        longitud=-longitud+floor(180/longitud)*360
+    T=(JD-2451545)/36525
+    LSTG=280.46061837+360.98564736629*(JD-2451545)+0.000387933*T**2-(T**3/38710000)
+    LST1=(LSTG-floor(LSTG/360)*360-longitud)
+    LST=LST1-floor(LST1/360)*360
+    return LST
