@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+#AstroAlgoritmos: conjunto de funciones para distintos calculos astronómicos
+#Fundamentalemnte extraídas de:
+#Astronomical Algorithms
+#Autor	Jean Meeus
+#Editor	Willmann-Bell, 1998
+#ISBN	0943396638, 9780943396637
+#477 páginas
 from numpy import *
 def gre2jul(D,M,A):
     """
@@ -61,24 +69,6 @@ def dt(a):
     universal, el argumento es el  dia juliano
     @author: Fernando Darío Mazzone
     """
-    dt=-15+0.00325*(a-1810)**2
+    dt=-15+0.00325*(a-1810) **2
     return dt
-def nutation(D,M,A):
-    """
-    Esta función calcula  la nutación del eje terrestre
-    @author: Fernando Darío Mazzone
-    """
-    ddt=dt(A)
-    JDE=gre2jul(D,M,A)+ddt/86400 
-    T=(JDE-2451545)/36525 
-    L=280.4665+36000.7698*T 
-    Lp=218.3165+481267.8813*T 
-    ome=125.04452-1934.136261*T 
-    ome=ome*pi/180
-    L=L*(pi/180)
-    Lp=Lp*(pi/180)
-    deps=(9.2*cos(ome)+.57*cos(2*L)+.1*cos(2*Lp)-.09*cos(2*ome))/3600
-    epsilon0=23.43929111-46.815*T/3600-0.00059*T**2/3600+0.001813*T**3/3600
-    dpsi=(-17.2*sin(ome)-1.32*sin(2*L)-0.23*sin(2*Lp)+0.21*sin(2*ome))/3600 
-    eps=epsilon0+deps
-    return dpsi,eps,T
+ 
